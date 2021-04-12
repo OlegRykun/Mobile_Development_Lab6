@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         app:tabGravity="fill"
-        app:tabIconTint="@color/cardview_light_background"
+        app:tabIconTint="@color/colorAccent"
         app:tabIndicatorHeight="4dp"
         app:tabIndicatorColor="@color/colorAccent"
         app:tabInlineLabel="true"

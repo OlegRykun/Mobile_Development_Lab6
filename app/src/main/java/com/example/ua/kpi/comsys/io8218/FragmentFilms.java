@@ -1,5 +1,7 @@
 package com.example.ua.kpi.comsys.io8218;
 
+import android.content.Intent;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,19 +10,27 @@ import android.widget.SearchView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
+
 public class FragmentFilms extends Fragment {
 
+    private FloatingActionButton addButton;
     View v;
-    private RecyclerViewAdapter recyclerAdapter;
+    protected static RecyclerViewAdapter recyclerAdapter;
     private RecyclerView myRecycleView;
-    List<Film> listFilm = new ArrayList<>();
+    protected static List<Film> listFilm = new ArrayList<>();
+    private Film deletedFilm = null;
 
     @Nullable
     @Override
@@ -29,6 +39,15 @@ public class FragmentFilms extends Fragment {
         myRecycleView = v.findViewById(R.id.films_recyclerview);
 
         setUpData();
+
+        addButton = v.findViewById(R.id.addingButton);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addIntent = new Intent(getContext(), AddFilmActivity.class);
+                startActivity(addIntent);
+            }
+        });
 
         recyclerAdapter = new RecyclerViewAdapter(getContext(), listFilm);
         myRecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -62,8 +81,40 @@ public class FragmentFilms extends Fragment {
             }
         });
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        itemTouchHelper.attachToRecyclerView(myRecycleView);
+
         return v;
     }
+
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int position = viewHolder.getAdapterPosition();
+            switch (direction) {
+                case ItemTouchHelper.LEFT:
+                    deletedFilm = listFilm.get(position);
+                    listFilm.remove(position);
+                    recyclerAdapter.notifyItemRemoved(position);
+                    break;
+            }
+        }
+
+        @Override
+        public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            new RecyclerViewSwipeDecorator.Builder(getContext(), c, myRecycleView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+                    .addSwipeLeftBackgroundColor(ContextCompat.getColor(getContext(), R.color.deleteFilm))
+                    .addSwipeLeftActionIcon(R.drawable.ic_delete)
+                    .create()
+                    .decorate();
+            super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+        }
+    };
 
     private void setUpData() {
         listFilm = new ArrayList<>();
