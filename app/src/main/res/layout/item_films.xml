@@ -11,7 +11,7 @@
         android:layout_width="85dp"
         android:layout_height="125dp"
         android:layout_marginLeft="5dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@color/noPoster"
         android:id="@+id/image_film">
     </ImageView>
 

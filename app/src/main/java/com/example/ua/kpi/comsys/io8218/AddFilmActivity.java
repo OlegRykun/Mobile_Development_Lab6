@@ -40,9 +40,9 @@ public class AddFilmActivity extends AppCompatActivity {
                     Toast.makeText(AddFilmActivity.this, "Title didn`t input. Please input the title", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    FragmentFilms.listFilm.add(new Film(name, year, "", "", "",
-                            "", "", "", "", "",
-                            "", "", "", "", type, R.color.noPoster));
+//                    FragmentFilms.listFilm.add(new Film(name, year, "", "", "",
+//                            "", "", "", "", "",
+//                            "", "", "", "", type, R.color.noPoster));
 
                     Toast.makeText(AddFilmActivity.this, "New film added", Toast.LENGTH_SHORT).show();
 
