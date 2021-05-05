@@ -6,4 +6,7 @@
     <color name="noPoster">#FFFFFF</color>
     <color name="deleteFilm">#FF4B4B</color>
     <color name="piechartValueTextColor">#3F51B5</color>
+    <color name="light_grey">#777777</color>
+    <color name="img_back">#A3EDEDED</color>
+    <color name="outline_color">#FF6200EE</color>
 </resources>
