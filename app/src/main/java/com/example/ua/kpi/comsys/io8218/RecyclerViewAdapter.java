@@ -47,9 +47,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.name.setText(mData.get(position).getFilmName());
         holder.year.setText(mData.get(position).getFilmYear());
         holder.type.setText(mData.get(position).getFilmType());
-//        Glide.with(mContext).load(mData.get(position).getFilmPoster()).into(holder.image);
+        Glide.with(mContext).load(mData.get(position).getFilmPoster()).into(holder.image);
 
-        holder.image.setImageResource(mData.get(position).getFilmPoster());
+        //holder.image.setImageResource(mData.get(position).getFilmPoster());
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 intent.putExtra("filmPoster", film.getFilmPoster());
                 intent.putExtra("filmName", film.getFilmName());
                 intent.putExtra("filmYear", film.getFilmYear());
+                intent.putExtra("filmType", film.getFilmType());
                 intent.putExtra("filmGenre", film.getFilmGenre());
                 intent.putExtra("filmDirector", film.getFilmDirector());
                 intent.putExtra("filmWriter", film.getFilmWriter());

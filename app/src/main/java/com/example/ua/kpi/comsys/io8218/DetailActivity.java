@@ -1,14 +1,17 @@
 package com.example.ua.kpi.comsys.io8218;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
+
 public class DetailActivity extends AppCompatActivity {
 
-    private int filmPoster;
+    private String filmPoster;
     private String filmName;
     private String filmYear;
     private String filmGenre;
@@ -23,6 +26,8 @@ public class DetailActivity extends AppCompatActivity {
     private String filmAwards;
     private String filmRating;
     private String filmPlot;
+
+    Film film;
 
     ImageView poster;
     TextView title, year, genre, director, writer, actors;
@@ -54,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void getDataOfSelectedFilm() {
-        filmPoster = getIntent().getIntExtra("filmPoster", 0);
+        filmPoster = getIntent().getStringExtra("filmPoster");
         filmName = getIntent().getStringExtra("filmName");
         filmYear = getIntent().getStringExtra("filmYear");
         filmGenre = getIntent().getStringExtra("filmGenre");
@@ -72,7 +77,9 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     private void setValues() {
-        poster.setImageResource(filmPoster);
+//        poster.setImageResource(filmPoster);
+        Glide.with(this).load(filmPoster).into(poster);
+
         title.setText(filmName);
         year.setText(filmYear);
         genre.setText(filmGenre);

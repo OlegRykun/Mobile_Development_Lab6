@@ -5,15 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
 public class AddFilmActivity extends AppCompatActivity {
 
-    TextInputEditText addTitle;
-    TextInputEditText addType;
-    TextInputEditText addYear;
+    EditText addTitle;
+    EditText addType;
+    EditText addYear;
     Button addButton;
 
     @Override

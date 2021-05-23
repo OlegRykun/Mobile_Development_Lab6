@@ -16,11 +16,14 @@ public class Film {
     private String filmRating;
     private String filmPlot;
     private String filmType;
-    private int filmPoster;
+    //private int filmPoster;
+    private String filmPoster;
+    private String filmImdbID;
 
     public Film(String filmName, String filmYear, String filmGenre, String filmDirector, String filmWriter,
                 String filmActors, String filmCountry, String filmLanguage, String filmProduction,
-                String filmRelease, String filmRuntime, String filmAwards, String filmRating, String filmPlot, String filmType, int filmPoster) {
+                String filmRelease, String filmRuntime, String filmAwards, String filmRating,
+                String filmPlot, String filmType, String filmPoster, String filmImdbID) {
         this.filmName = filmName;
         this.filmYear = filmYear;
         this.filmGenre = filmGenre;
@@ -37,6 +40,7 @@ public class Film {
         this.filmPlot = filmPlot;
         this.filmType = filmType;
         this.filmPoster = filmPoster;
+        this.filmImdbID = filmImdbID;
     }
 
     public Film() {
@@ -103,9 +107,11 @@ public class Film {
         return filmType;
     }
 
-    public int getFilmPoster() {
-        return filmPoster;
-    }
+    //public int getFilmPoster() { return filmPoster; }
+
+    public String getFilmPoster() { return filmPoster; }
+
+    public String getFilmImdbID() { return filmImdbID; }
 
     public void setFilmName(String filmName) {
         this.filmName = filmName;
@@ -167,7 +173,9 @@ public class Film {
         this.filmType = filmType;
     }
 
-    public void setFilmPoster(int filmPoster) {
-        this.filmPoster = filmPoster;
-    }
+    //public void setFilmPoster(int filmPoster) { this.filmPoster = filmPoster; }
+
+    public void setFilmPoster(String filmPoster) { this.filmPoster = filmPoster; }
+
+    public void setFilmImdbID(String filmImdbID) { this.filmImdbID = filmImdbID; }
 }
